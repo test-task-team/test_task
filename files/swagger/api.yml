@@ -116,20 +116,12 @@ paths:
         200:
           description: OK
           schema:
-            type: object
-            properties:
-              phone_e164:
-                type: string
-                description: customer's phone formatted in E.164
-              phone_display_formatted:
-                type: string
-                description: formatted according to the local display
-              customer_name:
-                type: string
-                description: the name of the customer we have on file
-              netverify_id_necessary:
-                type: boolean
-                description: Whether or not the customer should be promoted for netverify
+            $ref: "#/definitions/UserByReferenceResponse"
+          examples:
+            phone_e164: 164
+            phone_display_formatted: "xxx"
+            customer_name: "jack"
+            netverify_id_necessary: true
         400:
           description: Bad Request
           schema:
@@ -303,6 +295,22 @@ paths:
       security:
       - api_key: []
 definitions:
+  UserByReferenceResponse:
+    type: "object"
+    title: "UserByReference"
+    properties:
+      phone_e164:
+        type: string
+        description: customer's phone formatted in E.164
+      phone_display_formatted:
+        type: string
+        description: formatted according to the local display
+      customer_name:
+        type: string
+        description: the name of the customer we have on file
+      netverify_id_necessary:
+        type: boolean
+        description: Whether or not the customer should be promoted for netverify
   AboutResponse:
     type: "object"
     title: "About the API"
